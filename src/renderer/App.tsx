@@ -116,7 +116,6 @@ const App: React.FC = () => {
         await authService.init();
 
         console.info('[App] initializeApp: configService.getConfig');
-        const config = await configService.getConfig();
         
         const apiConfig: ApiConfig = {
           apiKey: config.api.key,
