@@ -1883,6 +1883,16 @@ if (!gotTheLock) {
   // ── Auth IPC handlers ──
 
   /**
+  /**
+   * Helper: Read the server base URL from the app config stored in SQLite.
+   * Falls back to a compile-time default if nothing is persisted yet.
+   */
+  const getServerBaseUrl = (): string => {
+    const cfg = getStore().get<{ server?: { baseUrl?: string } }>('app_config');
+    return cfg?.server?.baseUrl || 'https://api.lobsterai.com';
+  };
+
+  /**
    * Helper: Persist auth tokens into the kv store.
    */
   const saveAuthTokens = (accessToken: string, refreshToken: string) => {
@@ -2143,6 +2153,7 @@ if (!gotTheLock) {
       return { success: false };
     }
   });
+
 
   // Skills IPC handlers
   ipcMain.handle('skills:list', () => {
