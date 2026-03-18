@@ -770,6 +770,13 @@ const getOpenClawConfigSync = (): OpenClawConfigSync => {
       getPopoConfig: () => {
         try {
           return getIMGatewayManager().getConfig().popo;
+          } catch {
+          return null;
+        }
+      },
+      getNimConfig: () => {
+        try {
+          return getIMGatewayManager().getConfig().nim;
         } catch {
           return null;
         }
@@ -2894,6 +2901,17 @@ if (!gotTheLock) {
       }
     }
     return '127.0.0.1';
+  });
+  ipcMain.handle('im:openclaw:config-schema', async () => {
+    try {
+      const result = await getIMGatewayManager().getOpenClawConfigSchema();
+      return { success: true, result };
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to get OpenClaw config schema',
+      };
+    }
   });
 
   // ---- Pairing IPC handlers ----

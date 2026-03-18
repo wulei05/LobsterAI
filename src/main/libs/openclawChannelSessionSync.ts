@@ -68,6 +68,7 @@ export const CHANNEL_PLATFORM_MAP: Record<string, IMPlatform> = {
   wecom: 'wecom',
   'wecom-openclaw-plugin': 'wecom',
   'moltbot-popo': 'popo',
+  nim: 'nim',
 };
 
 /** Parse a channel sessionKey into platform + conversationId.
@@ -175,6 +176,7 @@ const CHANNEL_TITLE_PREFIX: Record<string, string> = {
   wecom: '[企微]',
   'wecom-openclaw-plugin': '[企微]',
   popo: '[POPO]',
+  nim: '[云信]',
 };
 
 export interface ChannelSessionSyncDeps {
