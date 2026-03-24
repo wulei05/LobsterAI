@@ -156,12 +156,9 @@ const providerMeta: Record<ProviderType, { label: string; icon: React.ReactNode 
   volcengine: { label: 'Volcengine', icon: <VolcengineIcon /> },
   openrouter: { label: 'OpenRouter', icon: <OpenRouterIcon /> },
   ollama: { label: 'Ollama', icon: <OllamaIcon /> },
-<<<<<<< HEAD
   ...Object.fromEntries(
     CUSTOM_PROVIDER_KEYS.map(key => [key, { label: getCustomProviderDefaultName(key), icon: <CustomProviderIcon /> }])
   ) as Record<(typeof CUSTOM_PROVIDER_KEYS)[number], { label: string; icon: React.ReactNode }>,
-=======
-  custom: { label: 'Custom', icon: <CustomProviderIcon /> },
 };
 
 const providerApiKeyUrl: Partial<Record<ProviderType, string>> = {
@@ -196,50 +193,6 @@ const providerWebsiteUrl: Partial<Record<ProviderType, string>> = {
   xiaomi: 'https://dev.mi.com/platform',
   openrouter: 'https://openrouter.ai',
   ollama: 'https://ollama.com',
-};
-
-const providerSwitchableDefaultBaseUrls: Partial<Record<ProviderType, { anthropic: string; openai: string }>> = {
-  deepseek: {
-    anthropic: 'https://api.deepseek.com/anthropic',
-    openai: 'https://api.deepseek.com',
-  },
-  moonshot: {
-    anthropic: 'https://api.moonshot.cn/anthropic',
-    openai: 'https://api.moonshot.cn/v1',
-  },
-  zhipu: {
-    anthropic: 'https://open.bigmodel.cn/api/anthropic',
-    openai: 'https://open.bigmodel.cn/api/paas/v4',
-  },
-  minimax: {
-    anthropic: 'https://api.minimaxi.com/anthropic',
-    openai: 'https://api.minimaxi.com/v1',
-  },
-  qwen: {
-    anthropic: 'https://dashscope.aliyuncs.com/apps/anthropic',
-    openai: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
-  },
-  xiaomi: {
-    anthropic: 'https://api.xiaomimimo.com/anthropic',
-    openai: 'https://api.xiaomimimo.com/v1/chat/completions',
-  },
-  volcengine: {
-    anthropic: 'https://ark.cn-beijing.volces.com/api/compatible',
-    openai: 'https://ark.cn-beijing.volces.com/api/v3',
-  },
-  openrouter: {
-    anthropic: 'https://openrouter.ai/api',
-    openai: 'https://openrouter.ai/api/v1',
-  },
-  ollama: {
-    anthropic: 'http://localhost:11434',
-    openai: 'http://localhost:11434/v1',
-  },
-  custom: {
-    anthropic: '',
-    openai: '',
-  },
->>>>>>> 6a27f80 (feat(model): add official site and API key links for model providers)
 };
 
 const providerRequiresApiKey = (provider: ProviderType) => provider !== 'ollama';
@@ -2846,32 +2799,25 @@ const Settings: React.FC<SettingsProps> = ({ onClose, initialTab, notice, onUpda
 
             {/* Provider Settings - Right Side */}
             <div className="w-3/5 pl-4 pr-2 space-y-4 overflow-y-auto [scrollbar-gutter:stable]">
-<<<<<<< HEAD
               <div className="flex items-center justify-between pb-2 border-b border-border">
-                <h3 className="text-base font-medium text-foreground">
-                  {isCustomProvider(activeProvider)
-                    ? ((providers[activeProvider] as ProviderConfig)?.displayName || getCustomProviderDefaultName(activeProvider))
-                    : (providerMeta[activeProvider]?.label ?? getProviderDisplayName(activeProvider))
-                  } {i18nService.t('providerSettings')}
-                </h3>
-=======
-              <div className="flex items-center justify-between pb-2 border-b dark:border-claude-darkBorder border-claude-border">
                 <div className="flex items-center gap-1.5">
-                  <h3 className="text-base font-medium dark:text-claude-darkText text-claude-text">
-                    {(providerMeta[activeProvider]?.label ?? activeProvider.charAt(0).toUpperCase() + activeProvider.slice(1))} {i18nService.t('providerSettings')}
+                  <h3 className="text-base font-medium text-foreground">
+                    {isCustomProvider(activeProvider)
+                      ? ((providers[activeProvider] as ProviderConfig)?.displayName || getCustomProviderDefaultName(activeProvider))
+                      : (providerMeta[activeProvider]?.label ?? getProviderDisplayName(activeProvider))
+                    } {i18nService.t('providerSettings')}
                   </h3>
                   {providerWebsiteUrl[activeProvider] && (
                     <button
                       type="button"
                       onClick={() => void window.electron.shell.openExternal(providerWebsiteUrl[activeProvider]!)}
-                      className="p-0.5 rounded text-claude-textSecondary dark:text-claude-darkTextSecondary hover:text-claude-accent transition-colors"
+                      className="p-0.5 rounded text-secondary hover:text-primary transition-colors"
                       title={i18nService.t('visitOfficialSite')}
                     >
                       <ArrowTopRightOnSquareIcon className="h-4 w-4" />
                     </button>
                   )}
                 </div>
->>>>>>> 6a27f80 (feat(model): add official site and API key links for model providers)
                 <div
                   className={`px-2 py-0.5 rounded-lg text-xs font-medium ${
                     providers[activeProvider].enabled
@@ -3111,26 +3057,20 @@ const Settings: React.FC<SettingsProps> = ({ onClose, initialTab, notice, onUpda
               {/* Standard API key section for non-MiniMax providers */}
               {providerRequiresApiKey(activeProvider) && activeProvider !== 'minimax' && (
                 <div>
-<<<<<<< HEAD
-                  <label htmlFor={`${activeProvider}-apiKey`} className="block text-xs font-medium text-foreground mb-1">
-                    {i18nService.t('apiKey')}
-                  </label>
-=======
                   <div className="flex items-center justify-between mb-1">
-                    <label htmlFor={`${activeProvider}-apiKey`} className="block text-xs font-medium dark:text-claude-darkText text-claude-text">
+                    <label htmlFor={`${activeProvider}-apiKey`} className="block text-xs font-medium text-foreground">
                       {i18nService.t('apiKey')}
                     </label>
                     {providerApiKeyUrl[activeProvider] && (
                       <button
                         type="button"
                         onClick={() => void window.electron.shell.openExternal(providerApiKeyUrl[activeProvider]!)}
-                        className="text-[11px] text-claude-accent hover:underline transition-colors"
+                        className="text-[11px] text-primary hover:underline transition-colors"
                       >
                         {i18nService.t('getApiKey')} &rarr;
                       </button>
                     )}
                   </div>
->>>>>>> 6a27f80 (feat(model): add official site and API key links for model providers)
                   <div className="relative">
                     <input
                       type={showApiKey ? 'text' : 'password'}
