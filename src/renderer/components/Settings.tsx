@@ -342,6 +342,10 @@ const buildOpenAICompatibleChatCompletionsUrl = (baseUrl: string, provider: stri
     return `${normalized}/v1beta/openai/chat/completions`;
   }
 
+  if (provider === 'github-copilot') {
+    return `${normalized}/chat/completions`;
+  }
+
   // Handle /v1, /v4 etc. versioned paths
   if (/\/v\d+$/.test(normalized)) {
     return `${normalized}/chat/completions`;
@@ -1395,6 +1399,9 @@ const Settings: React.FC<SettingsProps> = ({ onClose, initialTab, notice, onUpda
 
         // Store the Copilot API token in the provider's apiKey field
         handleProviderConfigChange('github-copilot', 'apiKey', result.token);
+        if (result.baseUrl) {
+          handleProviderConfigChange('github-copilot', 'baseUrl', result.baseUrl);
+        }
         // Auto-enable the provider
         enableProvider('github-copilot');
       } else {
@@ -1802,6 +1809,10 @@ const Settings: React.FC<SettingsProps> = ({ onClose, initialTab, notice, onUpda
         };
         if (providerConfig.apiKey) {
           headers.Authorization = `Bearer ${providerConfig.apiKey}`;
+        }
+        if (testingProvider === 'github-copilot') {
+          headers['Copilot-Integration-Id'] = 'vscode-chat';
+          headers['Editor-Version'] = 'vscode/1.96.2';
         }
         const openAIRequestBody: Record<string, unknown> = useResponsesApi
           ? {

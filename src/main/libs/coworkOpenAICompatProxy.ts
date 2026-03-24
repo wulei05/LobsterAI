@@ -2238,6 +2238,10 @@ async function handleRequest(
   if (upstreamConfig.apiKey) {
     headers.Authorization = `Bearer ${upstreamConfig.apiKey}`;
   }
+  if (upstreamConfig.provider === 'github-copilot') {
+    headers['Copilot-Integration-Id'] = 'vscode-chat';
+    headers['Editor-Version'] = 'vscode/1.96.2';
+  }
 
   const targetURLs = buildUpstreamTargetUrls(upstreamConfig.baseURL, upstreamAPIType);
   let currentTargetURL = targetURLs[0];

@@ -410,6 +410,7 @@ contextBridge.exposeInMainWorld('electron', {
         success: boolean;
         token?: string;
         githubUser?: string;
+        baseUrl?: string;
         error?: string;
       }>,
     cancelPolling: () => ipcRenderer.invoke('github-copilot:cancel-polling') as Promise<void>,
@@ -418,6 +419,7 @@ contextBridge.exposeInMainWorld('electron', {
       ipcRenderer.invoke('github-copilot:refresh-token', { githubToken }) as Promise<{
         success: boolean;
         token?: string;
+        baseUrl?: string;
         error?: string;
       }>,
   },

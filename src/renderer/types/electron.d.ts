@@ -474,6 +474,7 @@ interface IElectronAPI {
       success: boolean;
       token?: string;
       githubUser?: string;
+      baseUrl?: string;
       error?: string;
     }>;
     cancelPolling: () => Promise<void>;
@@ -481,6 +482,7 @@ interface IElectronAPI {
     refreshToken: (githubToken: string) => Promise<{
       success: boolean;
       token?: string;
+      baseUrl?: string;
       error?: string;
     }>;
   };

@@ -744,6 +744,10 @@ class ApiService {
         if (config.apiKey) {
           headers.Authorization = `Bearer ${config.apiKey}`;
         }
+        if (provider === 'github-copilot') {
+          headers['Copilot-Integration-Id'] = 'vscode-chat';
+          headers['Editor-Version'] = 'vscode/1.96.2';
+        }
 
         const requestUrl = useResponsesApi
           ? this.buildOpenAIResponsesUrl(config.baseUrl)

@@ -402,13 +402,13 @@ export const defaultConfig: AppConfig = {
     'github-copilot': {
       enabled: false,
       apiKey: '',
-      baseUrl: 'https://api.githubcopilot.com',
+      baseUrl: 'https://api.individual.githubcopilot.com',
       apiFormat: 'openai',
       models: [
+        { id: 'claude-sonnet-4.6', name: 'Claude Sonnet 4.6', supportsImage: true },
+        { id: 'claude-sonnet-4.5', name: 'Claude Sonnet 4.5', supportsImage: true },
         { id: 'gpt-4o', name: 'GPT-4o', supportsImage: true },
-        { id: 'claude-3.5-sonnet', name: 'Claude 3.5 Sonnet', supportsImage: true },
         { id: 'o3-mini', name: 'o3-mini', supportsImage: false },
-        { id: 'gemini-2.0-flash-001', name: 'Gemini 2.0 Flash', supportsImage: true }
       ]
     },
     ollama: {

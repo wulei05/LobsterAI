@@ -3153,10 +3153,10 @@ if (!gotTheLock) {
     try {
       const githubAccessToken = await pollForAccessToken(deviceCode, interval, expiresIn);
       const githubUser = await getGitHubUser(githubAccessToken);
-      const { token: copilotToken } = await getCopilotToken(githubAccessToken);
+      const { token: copilotToken, baseUrl } = await getCopilotToken(githubAccessToken);
       // Store the GitHub access token for later token refresh
       getStore().set('github_copilot_github_token', githubAccessToken);
-      return { success: true, token: copilotToken, githubUser };
+      return { success: true, token: copilotToken, githubUser, baseUrl };
     } catch (error) {
       return { success: false, error: error instanceof Error ? error.message : 'Authentication failed' };
     }
@@ -3174,8 +3174,8 @@ if (!gotTheLock) {
   ipcMain.handle('github-copilot:refresh-token', async (_event, { githubToken }: { githubToken: string }) => {
     const { getCopilotToken } = await import('./libs/githubCopilotAuth');
     try {
-      const { token } = await getCopilotToken(githubToken);
-      return { success: true, token };
+      const { token, baseUrl } = await getCopilotToken(githubToken);
+      return { success: true, token, baseUrl };
     } catch (error) {
       return { success: false, error: error instanceof Error ? error.message : 'Token refresh failed' };
     }

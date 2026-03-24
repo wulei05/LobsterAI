@@ -6,6 +6,11 @@
  * 2. User visits the verification URL and enters the code
  * 3. Poll GitHub for an access token
  * 4. Exchange the GitHub token for a Copilot API token
+ *
+ * References:
+ * - OpenClaw's implementation: extensions/github-copilot/token.ts
+ * - The Copilot token contains a `proxy-ep=...` parameter that indicates the
+ *   correct API base URL. We derive it by replacing `proxy.*` with `api.*`.
  */
 
 import { session } from 'electron';
@@ -15,6 +20,8 @@ const GITHUB_CLIENT_ID = 'Iv1.b507a08c87ecfe98';
 const DEVICE_CODE_URL = 'https://github.com/login/device/code';
 const ACCESS_TOKEN_URL = 'https://github.com/login/oauth/access_token';
 const COPILOT_TOKEN_URL = 'https://api.github.com/copilot_internal/v2/token';
+
+export const DEFAULT_COPILOT_API_BASE_URL = 'https://api.individual.githubcopilot.com';
 
 export interface DeviceCodeResponse {
   device_code: string;
@@ -29,7 +36,7 @@ export interface CopilotAuthStatus {
   userCode?: string;
   verificationUri?: string;
   error?: string;
-  /** The Copilot API token (Bearer token for api.githubcopilot.com) */
+  /** The Copilot API token (Bearer token for the Copilot API endpoint) */
   token?: string;
   /** GitHub username after successful auth */
   githubUser?: string;
@@ -44,6 +51,37 @@ async function fetchJson<T>(url: string, options: RequestInit): Promise<T> {
     throw new Error(`HTTP ${response.status}: ${text}`);
   }
   return response.json() as Promise<T>;
+}
+
+/**
+ * Derive the Copilot API base URL from a Copilot token.
+ *
+ * The token returned from the Copilot token endpoint is a semicolon-delimited
+ * set of key/value pairs. One of them is `proxy-ep=...`. We convert
+ * `proxy.*` → `api.*` to get the correct API endpoint.
+ *
+ * Example: token contains `proxy-ep=proxy.individual.githubcopilot.com`
+ *   → returns `https://api.individual.githubcopilot.com`
+ */
+export function deriveCopilotApiBaseUrlFromToken(token: string): string | null {
+  const trimmed = token.trim();
+  if (!trimmed) {
+    return null;
+  }
+
+  const match = trimmed.match(/(?:^|;)\s*proxy-ep=([^;\s]+)/i);
+  const proxyEp = match?.[1]?.trim();
+  if (!proxyEp) {
+    return null;
+  }
+
+  // Convert proxy.* → api.* (following openclaw's convention)
+  const host = proxyEp.replace(/^https?:\/\//, '').replace(/^proxy\./i, 'api.');
+  if (!host) {
+    return null;
+  }
+
+  return `https://${host}`;
 }
 
 /**
@@ -161,13 +199,20 @@ export async function pollForAccessToken(
 
 /**
  * Step 3: Get Copilot API token using the GitHub OAuth token.
- * This token is used as the Bearer token for api.githubcopilot.com.
+ * This token is used as the Bearer token for the Copilot API endpoint.
+ *
+ * The response contains a semicolon-delimited token with a `proxy-ep` parameter
+ * that indicates the correct API base URL.
  */
-export async function getCopilotToken(githubAccessToken: string): Promise<{ token: string; expiresAt: number }> {
+export async function getCopilotToken(githubAccessToken: string): Promise<{
+  token: string;
+  expiresAt: number;
+  baseUrl: string;
+}> {
   const response = await session.defaultSession.fetch(COPILOT_TOKEN_URL, {
     method: 'GET',
     headers: {
-      'Authorization': `token ${githubAccessToken}`,
+      'Authorization': `Bearer ${githubAccessToken}`,
       'Accept': 'application/json',
     },
   });
@@ -184,9 +229,26 @@ export async function getCopilotToken(githubAccessToken: string): Promise<{ toke
   }
 
   const data = await response.json() as any;
+  const token: string = data.token ?? '';
+
+  // Parse expires_at: GitHub returns unix timestamp (seconds), but we accept ms too.
+  let expiresAt: number;
+  const rawExpiresAt = data.expires_at;
+  if (typeof rawExpiresAt === 'number' && Number.isFinite(rawExpiresAt)) {
+    expiresAt = rawExpiresAt > 10_000_000_000 ? rawExpiresAt : rawExpiresAt * 1000;
+  } else {
+    expiresAt = Date.now() + 30 * 60 * 1000; // Default 30 min if missing
+  }
+
+  // Derive the correct API base URL from the token's proxy-ep parameter
+  const baseUrl = deriveCopilotApiBaseUrlFromToken(token) ?? DEFAULT_COPILOT_API_BASE_URL;
+
+  console.log(`[GithubCopilotAuth] resolved API base URL: ${baseUrl}`);
+
   return {
-    token: data.token,
-    expiresAt: data.expires_at,
+    token,
+    expiresAt,
+    baseUrl,
   };
 }
 
@@ -216,12 +278,18 @@ export function cancelPolling(): void {
 
 /**
  * Full device code authentication flow.
- * Returns the Copilot API token and GitHub username.
+ * Returns the Copilot API token, derived base URL, and GitHub username.
  */
 export async function authenticateWithDeviceFlow(
   onDeviceCode: (userCode: string, verificationUri: string) => void,
   onStatusChange?: (status: string) => void,
-): Promise<{ copilotToken: string; githubToken: string; githubUser: string; expiresAt: number }> {
+): Promise<{
+  copilotToken: string;
+  githubToken: string;
+  githubUser: string;
+  expiresAt: number;
+  baseUrl: string;
+}> {
   // Step 1: Get device code
   const deviceCodeResponse = await requestDeviceCode();
   onDeviceCode(deviceCodeResponse.user_code, deviceCodeResponse.verification_uri);
@@ -237,8 +305,8 @@ export async function authenticateWithDeviceFlow(
   // Step 3: Get user info
   const githubUser = await getGitHubUser(githubAccessToken);
 
-  // Step 4: Get Copilot token
-  const { token: copilotToken, expiresAt } = await getCopilotToken(githubAccessToken);
+  // Step 4: Get Copilot token (includes derived base URL)
+  const { token: copilotToken, expiresAt, baseUrl } = await getCopilotToken(githubAccessToken);
 
-  return { copilotToken, githubToken: githubAccessToken, githubUser, expiresAt };
+  return { copilotToken, githubToken: githubAccessToken, githubUser, expiresAt, baseUrl };
 }
