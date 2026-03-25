@@ -462,3 +462,20 @@ export const getCustomProviderDefaultName = (key: string): string => {
   const suffix = key.replace('custom_', '');
   return `Custom${suffix}`;
 };
+
+/**
+ * 获取 provider 的显示名称，自定义 provider 优先使用 displayName，
+ * 内置 provider 使用首字母大写的 key。
+ */
+export const getProviderDisplayName = (
+  providerKey: string,
+  providerConfig?: Record<string, unknown>,
+): string => {
+  if (isCustomProvider(providerKey)) {
+    const name = providerConfig && typeof providerConfig.displayName === 'string'
+      ? providerConfig.displayName
+      : '';
+    return name || getCustomProviderDefaultName(providerKey);
+  }
+  return providerKey.charAt(0).toUpperCase() + providerKey.slice(1);
+};

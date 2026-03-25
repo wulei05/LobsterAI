@@ -28,7 +28,7 @@ import type {
 import IMSettings from './im/IMSettings';
 import { imService } from '../services/im';
 import EmailSkillConfig from './skills/EmailSkillConfig';
-import { defaultConfig, type AppConfig, getVisibleProviders, isCustomProvider, getCustomProviderDefaultName } from '../config';
+import { defaultConfig, type AppConfig, getVisibleProviders, isCustomProvider, getCustomProviderDefaultName, getProviderDisplayName } from '../config';
 import {
   OpenAIIcon,
   DeepSeekIcon,
@@ -933,9 +933,6 @@ const Settings: React.FC<SettingsProps> = ({ onClose, initialTab, notice, onUpda
 
   // Handle deleting a custom provider
   const handleDeleteCustomProvider = (key: string) => {
-    if (!confirm(i18nService.t('confirmDeleteCustomProvider'))) {
-      return;
-    }
     setProviders(prev => {
       const next = { ...prev };
       delete next[key];
@@ -1469,7 +1466,7 @@ const Settings: React.FC<SettingsProps> = ({ onClose, initialTab, notice, onUpda
             allModels.push({
               id: model.id,
               name: model.name,
-              provider: providerName.charAt(0).toUpperCase() + providerName.slice(1),
+              provider: getProviderDisplayName(providerName, config),
               providerKey: providerName,
               supportsImage: model.supportsImage ?? false,
             });
@@ -2588,7 +2585,7 @@ const Settings: React.FC<SettingsProps> = ({ onClose, initialTab, notice, onUpda
                 const canToggleProvider = config.enabled || !missingApiKey;
                 const displayLabel = isCustom
                   ? (config.displayName || getCustomProviderDefaultName(provider))
-                  : (providerInfo?.label ?? provider.charAt(0).toUpperCase() + provider.slice(1));
+                  : (providerInfo?.label ?? getProviderDisplayName(provider));
                 return (
                   <div
                     key={provider}
@@ -2605,22 +2602,25 @@ const Settings: React.FC<SettingsProps> = ({ onClose, initialTab, notice, onUpda
                           {isCustom ? <CustomProviderIcon /> : providerInfo?.icon}
                         </span>
                       </div>
-                      <span className={`text-sm font-medium truncate ${
-                        activeProvider === provider
-                          ? 'text-claude-accent'
-                          : 'dark:text-claude-darkText text-claude-text'
-                      }`}>
-                        {displayLabel}
-                      </span>
-                      {isCustom && (
-                        <span className="ml-1.5 shrink-0 text-[10px] px-1.5 py-0.5 rounded bg-claude-accent/10 text-claude-accent">
-                          {i18nService.t('customBadge')}
+                      <div className="flex flex-col min-w-0">
+                        <span className={`text-sm font-medium truncate ${
+                          activeProvider === provider
+                            ? 'text-claude-accent'
+                            : 'dark:text-claude-darkText text-claude-text'
+                        }`}>
+                          {displayLabel}
                         </span>
-                      )}
+                        {isCustom && (
+                          <span className="text-[9px] leading-tight mt-0.5 text-claude-accent/70">
+                            {i18nService.t('customBadge')}
+                          </span>
+                        )}
+                      </div>
                     </div>
                     <div className="flex items-center ml-2 gap-1">
                       {isCustom && (
                         <button
+                          type="button"
                           className="opacity-0 group-hover:opacity-100 transition-opacity text-claude-secondaryText hover:text-red-500 dark:text-claude-darkSecondaryText dark:hover:text-red-400 p-0.5"
                           onClick={(e) => {
                             e.stopPropagation();
@@ -2660,6 +2660,7 @@ const Settings: React.FC<SettingsProps> = ({ onClose, initialTab, notice, onUpda
               })}
               {/* Add Custom Provider Button */}
               <button
+                type="button"
                 onClick={handleAddCustomProvider}
                 className="w-full flex items-center justify-center p-2 rounded-xl border border-dashed border-claude-border dark:border-claude-darkBorder text-claude-secondaryText dark:text-claude-darkSecondaryText hover:border-claude-accent hover:text-claude-accent transition-colors text-sm"
               >
@@ -2673,7 +2674,7 @@ const Settings: React.FC<SettingsProps> = ({ onClose, initialTab, notice, onUpda
                 <h3 className="text-base font-medium dark:text-claude-darkText text-claude-text">
                   {isCustomProvider(activeProvider)
                     ? (providers[activeProvider]?.displayName || getCustomProviderDefaultName(activeProvider))
-                    : (providerMeta[activeProvider]?.label ?? activeProvider.charAt(0).toUpperCase() + activeProvider.slice(1))
+                    : (providerMeta[activeProvider]?.label ?? getProviderDisplayName(activeProvider))
                   } {i18nService.t('providerSettings')}
                 </h3>
                 <div
@@ -2932,6 +2933,22 @@ const Settings: React.FC<SettingsProps> = ({ onClose, initialTab, notice, onUpda
                       </button>
                     </div>
                   </div>
+                </div>
+              )}
+
+              {isCustomProvider(activeProvider) && (
+                <div>
+                  <label htmlFor={`${activeProvider}-displayName`} className="block text-xs font-medium dark:text-claude-darkText text-claude-text mb-1">
+                    {i18nService.t('customDisplayName')}
+                  </label>
+                  <input
+                    type="text"
+                    id={`${activeProvider}-displayName`}
+                    value={providers[activeProvider]?.displayName ?? ''}
+                    onChange={(e) => handleProviderConfigChange(activeProvider, 'displayName', e.target.value)}
+                    className="block w-full rounded-xl bg-claude-surfaceInset dark:bg-claude-darkSurfaceInset dark:border-claude-darkBorder border-claude-border border focus:border-claude-accent focus:ring-1 focus:ring-claude-accent/30 dark:text-claude-darkText text-claude-text px-3 py-2 text-xs"
+                    placeholder={i18nService.t('customDisplayNamePlaceholder')}
+                  />
                 </div>
               )}
 
