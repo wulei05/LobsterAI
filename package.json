@@ -6,7 +6,7 @@
     "email": "lobsterai.project@rd.netease.com"
   },
   "license": "MIT",
-  "version": "2026.3.25",
+  "version": "2026.3.26",
   "openclaw": {
     "version": "v2026.3.2",
     "repo": "https://github.com/openclaw/openclaw.git",
@@ -115,7 +115,9 @@
     "@types/uuid": "^10.0.0",
     "@wecom/wecom-aibot-sdk": "^0.1.0",
     "bufferutil": "^4.1.0",
+    "cheerio": "^1.2.0",
     "cron-parser": "^5.5.0",
+    "cronstrue": "^3.14.0",
     "dompurify": "^3.3.1",
     "electron-log": "^5.4.3",
     "extract-zip": "^2.0.1",
