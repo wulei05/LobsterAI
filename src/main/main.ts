@@ -2160,6 +2160,10 @@ if (!gotTheLock) {
     return getSkillManager().downloadSkill(source);
   });
 
+  ipcMain.handle('skills:upgrade', async (_event, skillId: string, downloadUrl: string) => {
+    return getSkillManager().upgradeSkill(skillId, downloadUrl);
+  });
+
   ipcMain.handle('skills:confirmInstall', async (_event, pendingId: string, action: string) => {
     const validActions = ['install', 'installDisabled', 'cancel'];
     if (!validActions.includes(action)) {
@@ -4435,6 +4439,13 @@ if (!gotTheLock) {
       console.log('[Main] initApp: syncBundledSkillsToUserData done');
     } catch (error) {
       console.error('[Main] initApp: syncBundledSkillsToUserData failed:', error);
+    }
+
+    try {
+      manager.recoverInterruptedUpgrades();
+      console.log('[Main] initApp: recoverInterruptedUpgrades done');
+    } catch (error) {
+      console.error('[Main] initApp: recoverInterruptedUpgrades failed:', error);
     }
 
     try {
