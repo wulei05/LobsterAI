@@ -1,0 +1,78 @@
+src/main/im/imGatewayManager.ts
+  f8141415ca2ae4af 461-471
+  58396b465a6221f4 731
+src/renderer/components/im/IMSettings.tsx
+  2962ab337c2b70f3 839
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.22",
+  "base_commit_sha": "2ff8d1d6f9fb3974441c98b29734301dbddc9478",
+  "prompts": {
+    "2962ab337c2b70f3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "78516584-ce63-4b0d-9aa8-c132cf6e782e",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Dylan <2894220@gmail.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 0,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    },
+    "58396b465a6221f4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "opencode-transcript-ses_2c8436fd9ffekJgLcJs37Ph5CY-bfdbdaf3-22ad-41bd-bdef-0a1afe7f2980",
+        "model": "unknown"
+      },
+      "human_author": "Dylan <2894220@gmail.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 0,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    },
+    "93857204c2487215": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "opencode-transcript-ses_2c8436fd9ffekJgLcJs37Ph5CY-d29fec62-5ba2-49d3-bc49-f4062a3b500b",
+        "model": "unknown"
+      },
+      "human_author": "Dylan <2894220@gmail.com>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 4,
+      "accepted_lines": 0,
+      "overriden_lines": 0
+    },
+    "ad5b3e1888a2e4ca": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1ac8b994-9aef-43b2-a98a-4ad7cf5fc91d",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Dylan <2894220@gmail.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 0,
+      "overriden_lines": 0
+    },
+    "f8141415ca2ae4af": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "opencode-transcript-ses_2c8436fd9ffekJgLcJs37Ph5CY-3ace435c-5770-43b4-897a-6271a8383f59",
+        "model": "unknown"
+      },
+      "human_author": "Dylan <2894220@gmail.com>",
+      "messages": [],
+      "total_additions": 11,
+      "total_deletions": 1,
+      "accepted_lines": 11,
+      "overriden_lines": 0
+    }
+  }
+}
