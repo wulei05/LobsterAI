@@ -2316,6 +2316,10 @@ const CoworkSessionDetail: React.FC<CoworkSessionDetailProps> = ({
             {!railTooltip.isUser && (
               <div className="text-[12px] font-medium mb-0.5 text-neutral-800 dark:text-neutral-200">
                 LobsterAI:
+              </div>
+            )}
+            <div
+              className="text-neutral-600 dark:text-neutral-300"
               style={{
                 display: '-webkit-box',
                 WebkitLineClamp: 2,
