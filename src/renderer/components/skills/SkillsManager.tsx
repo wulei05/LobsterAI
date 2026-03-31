@@ -293,16 +293,18 @@ const SkillsManager: React.FC = () => {
     const installed = skills.find(s => s.id === marketplaceSkill.id);
     if (!installed) return 'not_installed';
     if (installed.isBuiltIn) return 'installed';
-    if (!installed.version || !marketplaceSkill.version) return 'installed';
-    if (compareVersions(marketplaceSkill.version, installed.version) > 0) return 'update_available';
+    if (!marketplaceSkill.version) return 'installed';
+    const localVersion = installed.version || '0.0.0';
+    if (compareVersions(marketplaceSkill.version, localVersion) > 0) return 'update_available';
     return 'installed';
   };
 
   const updatableSkills = useMemo(() => {
     return marketplaceSkills.filter(ms => {
       const installed = skills.find(s => s.id === ms.id);
-      if (!installed || installed.isBuiltIn || !installed.version || !ms.version) return false;
-      return compareVersions(ms.version, installed.version) > 0;
+      if (!installed || installed.isBuiltIn || !ms.version) return false;
+      const localVersion = installed.version || '0.0.0';
+      return compareVersions(ms.version, localVersion) > 0;
     });
   }, [skills, marketplaceSkills]);
 
@@ -641,7 +643,7 @@ const SkillsManager: React.FC = () => {
                 </div>
                 {(() => {
                   const mp = marketplaceSkills.find(m => m.id === skill.id);
-                  if (mp && !skill.isBuiltIn && skill.version && mp.version && compareVersions(mp.version, skill.version) > 0) {
+                  if (mp && !skill.isBuiltIn && mp.version && compareVersions(mp.version, skill.version || '0.0.0') > 0) {
                     return (
                       <button
                         type="button"
