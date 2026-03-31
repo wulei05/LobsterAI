@@ -9,12 +9,12 @@ import CoworkPromptInput from './CoworkPromptInput';
 import MarkdownContent from '../MarkdownContent';
 import {
   CheckIcon,
-  InformationCircleIcon,
   ShareIcon,
-  ExclamationTriangleIcon,
   ChevronRightIcon,
   PhotoIcon,
 } from '@heroicons/react/24/outline';
+import InformationCircleIcon from '../icons/InformationCircleIcon';
+import ExclamationTriangleIcon from '../icons/ExclamationTriangleIcon';
 import { FolderIcon } from '@heroicons/react/24/solid';
 import { coworkService } from '../../services/cowork';
 import SidebarToggleIcon from '../icons/SidebarToggleIcon';
@@ -26,7 +26,8 @@ import PencilSquareIcon from '../icons/PencilSquareIcon';
 import TrashIcon from '../icons/TrashIcon';
 import WindowTitleBar from '../window/WindowTitleBar';
 import { getCompactFolderName } from '../../utils/path';
-import { getScheduledReminderDisplayText } from '../../../scheduled-task/reminderText';
+import { getScheduledReminderDisplayText } from '../../../scheduledTask/reminderText';
+import DiffView, { extractDiffFromToolInput } from './DiffView';
 
 interface CoworkSessionDetailProps {
   onManageSkills?: () => void;
@@ -700,6 +701,13 @@ const ToolCallGroup: React.FC<{
   // Check if this is a Bash-like tool that should show terminal style
   const isBashTool = isBashLikeToolName(rawToolName);
 
+  // Check if this is an Edit/MultiEdit tool with diff data
+  const diffDataList = useMemo(
+    () => extractDiffFromToolInput(rawToolName, toolInput as Record<string, unknown> | undefined),
+    [rawToolName, toolInput],
+  );
+  const isEditWithDiff = diffDataList !== null && diffDataList.length > 0;
+
   return (
     <div className="relative py-1">
       {/* Vertical connecting line to next tool group */}
@@ -788,6 +796,36 @@ const ToolCallGroup: React.FC<{
             </div>
           ) : isTodoWriteTool && todoItems ? (
             <TodoWriteInputView items={todoItems} />
+          ) : isEditWithDiff && diffDataList ? (
+            // Diff view for Edit/MultiEdit tools
+            <div className="space-y-2">
+              {diffDataList.map((diff, idx) => (
+                <DiffView
+                  key={idx}
+                  oldStr={diff.oldStr}
+                  newStr={diff.newStr}
+                  filePath={diff.filePath}
+                />
+              ))}
+              {toolResult && (hasToolResultText || showNoDetailError) && (
+                <div>
+                  <div className="text-[10px] font-medium dark:text-claude-darkTextSecondary/70 text-claude-textSecondary/70 uppercase tracking-wider mb-1">
+                    {i18nService.t('coworkToolResult')}
+                  </div>
+                  <div className="max-h-32 overflow-y-auto">
+                    <pre className={`text-xs whitespace-pre-wrap break-words font-mono ${
+                      isToolError
+                        ? 'text-red-500'
+                        : hasToolResultText
+                          ? 'dark:text-claude-darkText text-claude-text'
+                          : 'dark:text-claude-darkTextSecondary text-claude-textSecondary italic'
+                    }`}>
+                      {displayToolResult}
+                    </pre>
+                  </div>
+                </div>
+              )}
+            </div>
           ) : (
             // Standard display for other tools with input/output labels
             <div className="space-y-2">
@@ -1135,6 +1173,7 @@ export const AssistantTurnBlock: React.FC<{
   const visibleAssistantItems = getVisibleAssistantItems(turn.assistantItems);
 
   const renderSystemMessage = (message: CoworkMessage) => {
+    const isError = !hasText(message.content) && typeof message.metadata?.error === 'string';
     const rawContent = hasText(message.content)
       ? message.content
       : (typeof message.metadata?.error === 'string' ? message.metadata.error : '');
@@ -1144,8 +1183,11 @@ export const AssistantTurnBlock: React.FC<{
 
     return (
       <div className="rounded-lg border border-border/40 bg-background/60 px-3 py-2">
-        <div className="flex items-start gap-2">
-          <InformationCircleIcon className="h-4 w-4 mt-0.5 text-secondary flex-shrink-0" />
+        <div className="flex items-center gap-2">
+          {isError
+            ? <ExclamationTriangleIcon className="h-4 w-4 text-secondary flex-shrink-0" />
+            : <InformationCircleIcon className="h-4 w-4 text-secondary flex-shrink-0" />
+          }
           <div className="text-xs whitespace-pre-wrap text-secondary">
             {content}
           </div>

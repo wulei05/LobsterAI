@@ -14,7 +14,8 @@ import ClockIcon from './icons/ClockIcon';
 import PuzzleIcon from './icons/PuzzleIcon';
 import SidebarToggleIcon from './icons/SidebarToggleIcon';
 import TrashIcon from './icons/TrashIcon';
-import { ExclamationTriangleIcon, UserGroupIcon } from '@heroicons/react/24/outline';
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import UserGroupIcon from './icons/UserGroupIcon';
 
 interface SidebarProps {
   onShowSettings: () => void;
