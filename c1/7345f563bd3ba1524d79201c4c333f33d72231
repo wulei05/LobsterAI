@@ -1,0 +1,36 @@
+scripts/ensure-openclaw-plugins.cjs
+  d01f8d6411d37e23 324-343
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.22",
+  "base_commit_sha": "c17345f563bd3ba1524d79201c4c333f33d72231",
+  "prompts": {
+    "b67ebc49a7c5b91c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "opencode-transcript-ses_2e5ce9bfdffema08K9CFtbIVzC-dfc84065-00ae-4a65-91f6-e4de05c9990f",
+        "model": "unknown"
+      },
+      "human_author": "Dylan <2894220@gmail.com>",
+      "messages": [],
+      "total_additions": 6,
+      "total_deletions": 7,
+      "accepted_lines": 0,
+      "overriden_lines": 0
+    },
+    "d01f8d6411d37e23": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "opencode-transcript-ses_2c79f2fd1ffeH8rPL2OqKK2Kxg-331f9d6a-a2ec-4e7a-8786-06901ccba451",
+        "model": "unknown"
+      },
+      "human_author": "Dylan <2894220@gmail.com>",
+      "messages": [],
+      "total_additions": 20,
+      "total_deletions": 0,
+      "accepted_lines": 20,
+      "overriden_lines": 0
+    }
+  }
+}
