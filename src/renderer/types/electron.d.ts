@@ -494,6 +494,16 @@ interface IElectronAPI {
   networkStatus: {
     send: (status: 'online' | 'offline') => void;
   };
+  auth: {
+    login: (loginUrl?: string) => Promise<{ success: boolean; error?: string }>;
+    exchange: (code: string) => Promise<{ success: boolean; user?: any; quota?: any; error?: string }>;
+    getUser: () => Promise<{ success: boolean; user?: any; quota?: any }>;
+    getQuota: () => Promise<{ success: boolean; quota?: any }>;
+    logout: () => Promise<{ success: boolean }>;
+    refreshToken: () => Promise<{ success: boolean; accessToken?: string }>;
+    getAccessToken: () => Promise<string | null>;
+    onCallback: (callback: (data: { code: string }) => void) => () => void;
+  };
   feishu: {
     install: {
       qrcode: (isLark: boolean) => Promise<{
