@@ -1,0 +1,23 @@
+src/main/im/imGatewayManager.ts
+  574e2fb30401b60a 567-580
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.3",
+  "base_commit_sha": "3c7a62086d779d4fcb40a2be2c0ac2aa888f1dfc",
+  "prompts": {
+    "574e2fb30401b60a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5cc98ee9-e64c-4d3b-b169-026be6ebb071",
+        "model": "<synthetic>"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 14,
+      "total_deletions": 0,
+      "accepted_lines": 14,
+      "overriden_lines": 0
+    }
+  }
+}
