@@ -300,6 +300,8 @@ export interface WeixinGatewayStatus {
 
 // ==================== Common IM Types ====================
 
+
+
 export interface IMGatewayConfig {
   dingtalk: DingTalkOpenClawConfig;
   feishu: FeishuOpenClawConfig;
