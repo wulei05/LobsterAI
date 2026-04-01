@@ -574,11 +574,6 @@ export class IMStore {
     return { ...DEFAULT_NETEASE_BEE_CONFIG, ...stored };
   }
 
-  setNeteaseBeeChanConfig(config: Partial<NeteaseBeeChanConfig>): void {
-    const current = this.getNeteaseBeeChanConfig();
-    this.setConfigValue('netease-bee', { ...current, ...config });
-  }
-
   // ==================== IM Settings ====================
 
   getIMSettings(): IMSettings {

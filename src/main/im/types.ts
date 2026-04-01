@@ -504,13 +504,6 @@ export const DEFAULT_NIM_CONFIG: NimConfig = {
   token: '',
 };
 
-export const DEFAULT_NETEASE_BEE_CONFIG: NeteaseBeeChanConfig = {
-  enabled: false,
-  clientId: '',
-  secret: '',
-  debug: true,
-};
-
 // ==================== NetEase Bee Types ====================
 
 export interface NeteaseBeeChanConfig {
