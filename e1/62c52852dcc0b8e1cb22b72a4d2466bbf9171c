@@ -1,0 +1,23 @@
+src/renderer/config.ts
+  574e2fb30401b60a 468-487
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.3",
+  "base_commit_sha": "e162c52852dcc0b8e1cb22b72a4d2466bbf9171c",
+  "prompts": {
+    "574e2fb30401b60a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5cc98ee9-e64c-4d3b-b169-026be6ebb071",
+        "model": "<synthetic>"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 21,
+      "total_deletions": 1,
+      "accepted_lines": 20,
+      "overriden_lines": 0
+    }
+  }
+}
