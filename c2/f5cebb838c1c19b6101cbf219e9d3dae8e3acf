@@ -1,0 +1,25 @@
+src/renderer/App.tsx
+  574e2fb30401b60a 109
+src/renderer/types/electron.d.ts
+  574e2fb30401b60a 444-453
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.3",
+  "base_commit_sha": "c2f5cebb838c1c19b6101cbf219e9d3dae8e3acf",
+  "prompts": {
+    "574e2fb30401b60a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5cc98ee9-e64c-4d3b-b169-026be6ebb071",
+        "model": "<synthetic>"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 18,
+      "total_deletions": 8,
+      "accepted_lines": 12,
+      "overriden_lines": 0
+    }
+  }
+}
