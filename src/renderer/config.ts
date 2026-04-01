@@ -339,3 +339,23 @@ export const getProviderDisplayName = (
   }
   return providerKey.charAt(0).toUpperCase() + providerKey.slice(1);
 };
+
+export const isCustomProvider = (key: string): boolean => key.startsWith('custom_');
+
+export const getCustomProviderDefaultName = (key: string): string => {
+  const suffix = key.replace('custom_', '');
+  return `Custom${suffix}`;
+};
+
+export const getProviderDisplayName = (
+  providerKey: string,
+  providerConfig?: Record<string, unknown>,
+): string => {
+  if (isCustomProvider(providerKey)) {
+    const name = providerConfig && typeof providerConfig.displayName === 'string'
+      ? providerConfig.displayName
+      : '';
+    return name || getCustomProviderDefaultName(providerKey);
+  }
+  return providerKey.charAt(0).toUpperCase() + providerKey.slice(1);
+};
