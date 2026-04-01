@@ -1,0 +1,27 @@
+src/main/im/types.ts
+  574e2fb30401b60a 510-519
+src/main/libs/openclawChannelSessionSync.ts
+  574e2fb30401b60a 10,62,83
+src/main/im/imStore.ts
+  574e2fb30401b60a 23,34,546-557
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.3",
+  "base_commit_sha": "3edf7625e2e3eb8a7644624c321f8a924870edd1",
+  "prompts": {
+    "574e2fb30401b60a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5cc98ee9-e64c-4d3b-b169-026be6ebb071",
+        "model": "<synthetic>"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 27,
+      "total_deletions": 3,
+      "accepted_lines": 27,
+      "overriden_lines": 0
+    }
+  }
+}
