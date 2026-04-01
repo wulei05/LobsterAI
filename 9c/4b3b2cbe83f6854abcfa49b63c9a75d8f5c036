@@ -1,0 +1,23 @@
+src/scheduled-task/enginePrompt.ts
+  f99dd7ea71a07841 14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.20",
+  "base_commit_sha": "9c4b3b2cbe83f6854abcfa49b63c9a75d8f5c036",
+  "prompts": {
+    "f99dd7ea71a07841": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "32afebc6-f8b2-40aa-bab6-eac91e5c3903",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Dylan <2894220@gmail.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 0,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    }
+  }
+}
