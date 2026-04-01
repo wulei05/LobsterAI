@@ -20,6 +20,7 @@ import {
   IMSettings,
   Platform,
   IMSessionMapping,
+  NeteaseBeeChanConfig,
   DEFAULT_DINGTALK_OPENCLAW_CONFIG,
   DEFAULT_FEISHU_OPENCLAW_CONFIG,
   DEFAULT_TELEGRAM_OPENCLAW_CONFIG,
@@ -30,6 +31,7 @@ import {
   DEFAULT_WECOM_CONFIG,
   DEFAULT_POPO_CONFIG,
   DEFAULT_WEIXIN_CONFIG,
+  DEFAULT_NETEASE_BEE_CONFIG,
   DEFAULT_IM_SETTINGS,
 } from './types';
 
@@ -563,6 +565,18 @@ export class IMStore {
   setWeixinConfig(config: Partial<WeixinOpenClawConfig>): void {
     const current = this.getWeixinConfig();
     this.setConfigValue('weixin', { ...current, ...config });
+  }
+
+  // ==================== NetEase Bee ====================
+
+  getNeteaseBeeChanConfig(): NeteaseBeeChanConfig {
+    const stored = this.getConfigValue<NeteaseBeeChanConfig>('netease-bee');
+    return { ...DEFAULT_NETEASE_BEE_CONFIG, ...stored };
+  }
+
+  setNeteaseBeeChanConfig(config: Partial<NeteaseBeeChanConfig>): void {
+    const current = this.getNeteaseBeeChanConfig();
+    this.setConfigValue('netease-bee', { ...current, ...config });
   }
 
   // ==================== IM Settings ====================

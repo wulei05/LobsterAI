@@ -509,6 +509,16 @@ export const DEFAULT_NETEASE_BEE_CONFIG: NeteaseBeeChanConfig = {
   debug: true,
 };
 
+// ==================== NetEase Bee Types ====================
+
+export interface NeteaseBeeChanConfig {
+  enabled: boolean;
+}
+
+export const DEFAULT_NETEASE_BEE_CONFIG: NeteaseBeeChanConfig = {
+  enabled: false,
+};
+
 export const DEFAULT_TELEGRAM_OPENCLAW_CONFIG: TelegramOpenClawConfig = {
   enabled: false,
   botToken: '',

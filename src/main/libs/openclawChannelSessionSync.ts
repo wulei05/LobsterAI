@@ -60,6 +60,8 @@ export function isManagedSessionKey(sessionKey: string | undefined | null): bool
   return parseManagedSessionKey(sessionKey) !== null;
 }
 
+
+
 /** Parse a channel sessionKey into platform + conversationId.
  *  Supports three formats:
  *  - OpenClaw format: "agent:{agentId}:{platform}:{subtype}:{conversationId}"
