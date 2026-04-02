@@ -1,0 +1,21 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.5",
+  "base_commit_sha": "da32218bdc5dbebe122d026698f641ff7bf4d8dc",
+  "prompts": {
+    "872e93617d89db68": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e80734fd-b29d-4ed4-b58d-fae49051b7b8",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 0,
+      "overriden_lines": 4
+    }
+  }
+}
