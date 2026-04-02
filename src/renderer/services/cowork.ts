@@ -212,7 +212,9 @@ class CoworkService {
       }
       store.dispatch(setSessions(result.sessions));
 
-      const sessionsWithoutModel = result.sessions.filter(s => !s.modelId);
+      const sessionsWithoutModel = result.sessions.filter(s =>
+        !s.modelId && (!s.agentId || s.agentId === 'main')
+      );
       if (sessionsWithoutModel.length > 0) {
         this.scheduleBackfill(sessionsWithoutModel.map(s => s.id));
       }

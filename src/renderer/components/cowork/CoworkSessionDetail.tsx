@@ -2620,15 +2620,15 @@ const CoworkSessionDetail: React.FC<CoworkSessionDetailProps> = ({
             onManageSkills={remoteManaged ? undefined : onManageSkills}
             showModelSelector={!remoteManaged}
             sessionId={currentSession?.id}
-            sessionModel={sessionModel}
-            onSessionModelChange={async (model) => {
+            sessionModel={(!currentSession?.agentId || currentSession.agentId === 'main') ? sessionModel : undefined}
+            onSessionModelChange={(!currentSession?.agentId || currentSession.agentId === 'main') ? async (model) => {
               if (!currentSession) return;
               await coworkService.setSessionModel(
                 currentSession.id,
                 model ? model.id : null,
                 model ? (model.providerKey ?? null) : null,
               );
-            }}
+            } : undefined}
           />
         </div>
         <p className="text-center text-[10px] text-muted opacity-50 mt-2 mb-[-8px] select-none">

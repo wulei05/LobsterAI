@@ -94,8 +94,8 @@ const CoworkSessionList: React.FC<CoworkSessionListProps> = ({
           onRename={(title) => onRenameSession(session.id, title)}
           onToggleSelection={() => onToggleSelection(session.id)}
           onEnterBatchMode={() => onEnterBatchMode(session.id)}
-          fallbackModelName={globalModelName}
-          modelDisplayName={session.modelId && session.providerKey
+          fallbackModelName={(!session.agentId || session.agentId === 'main') ? globalModelName : undefined}
+          modelDisplayName={session.modelId && session.providerKey && (!session.agentId || session.agentId === 'main')
             ? (modelNameMap.get(getModelIdentityKey({ id: session.modelId, providerKey: session.providerKey })) ?? session.modelId)
             : undefined
           }

@@ -2608,6 +2608,7 @@ if (!gotTheLock) {
         skillIds: options.activeSkillIds,
         imageAttachments: options.imageAttachments,
         modelOverride: existingSession?.modelId && existingSession?.providerKey
+          && (!existingSession.agentId || existingSession.agentId === 'main')
           ? { modelId: existingSession.modelId, providerKey: existingSession.providerKey }
           : undefined,
       }).catch(error => {

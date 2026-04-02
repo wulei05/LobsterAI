@@ -33,7 +33,7 @@ export function computeModelAgentId(providerKey: string, modelId: string): strin
   for (let i = 0; i < key.length; i++) {
     h = (Math.imul(31, h) + key.charCodeAt(i)) >>> 0;
   }
-  return `model-${h.toString(36)}`;
+  return `main_${h.toString(36)}`;
 }
 
 const mapExecutionModeToSandboxMode = (mode: CoworkExecutionMode, isEnterprise: boolean): 'off' | 'non-main' | 'all' => {
