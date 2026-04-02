@@ -2618,7 +2618,7 @@ const CoworkSessionDetail: React.FC<CoworkSessionDetailProps> = ({
             size="large"
             remoteManaged={remoteManaged}
             onManageSkills={remoteManaged ? undefined : onManageSkills}
-            showModelSelector={!remoteManaged}
+            showModelSelector={!remoteManaged && (!currentSession?.agentId || currentSession.agentId === 'main')}
             sessionId={currentSession?.id}
             sessionModel={(!currentSession?.agentId || currentSession.agentId === 'main') ? sessionModel : undefined}
             onSessionModelChange={(!currentSession?.agentId || currentSession.agentId === 'main') ? async (model) => {
