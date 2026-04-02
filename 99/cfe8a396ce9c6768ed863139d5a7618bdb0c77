@@ -1,0 +1,27 @@
+.github/workflows/stale.yml
+  d1d1b97a5718f2f7 1-48
+.github/workflows/welcome.yml
+  d1d1b97a5718f2f7 1-60
+.github/dependabot.yml
+  d1d1b97a5718f2f7 1-31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.3",
+  "base_commit_sha": "99cfe8a396ce9c6768ed863139d5a7618bdb0c77",
+  "prompts": {
+    "d1d1b97a5718f2f7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "176a759c-4571-497a-b0aa-45310913d9c2",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 139,
+      "overriden_lines": 0
+    }
+  }
+}
