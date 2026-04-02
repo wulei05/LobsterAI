@@ -1,0 +1,25 @@
+.github/workflows/stale.yml
+  d1d1b97a5718f2f7 5,15
+.github/workflows/welcome.yml
+  d1d1b97a5718f2f7 16,20-30,40-51
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.3",
+  "base_commit_sha": "93b0afae177d8dfe02be311ff7e6109a961699e2",
+  "prompts": {
+    "d1d1b97a5718f2f7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "176a759c-4571-497a-b0aa-45310913d9c2",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 26,
+      "total_deletions": 5,
+      "accepted_lines": 26,
+      "overriden_lines": 0
+    }
+  }
+}
