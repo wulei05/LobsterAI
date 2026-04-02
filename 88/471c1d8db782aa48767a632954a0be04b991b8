@@ -1,0 +1,25 @@
+src/renderer/components/cowork/CoworkPromptInput.tsx
+  872e93617d89db68 721-722,727
+src/renderer/services/cowork.ts
+  872e93617d89db68 547
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.5",
+  "base_commit_sha": "88471c1d8db782aa48767a632954a0be04b991b8",
+  "prompts": {
+    "872e93617d89db68": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e80734fd-b29d-4ed4-b58d-fae49051b7b8",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 6,
+      "overriden_lines": 2
+    }
+  }
+}
