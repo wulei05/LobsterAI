@@ -1,36 +1,37 @@
-import React, { useRef, useEffect, useState, useCallback, useMemo } from 'react';
-import { createPortal } from 'react-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../store';
-import { i18nService } from '../../services/i18n';
-import type { CoworkMessage, CoworkMessageMetadata, CoworkImageAttachment } from '../../types/cowork';
-import type { Skill } from '../../types/skill';
-import CoworkPromptInput, { type CoworkPromptInputRef } from './CoworkPromptInput';
-import MarkdownContent from '../MarkdownContent';
+import { ShareIcon } from '@heroicons/react/20/solid';
 import {
   CheckIcon,
   ChevronRightIcon,
-  PhotoIcon,
   DocumentArrowDownIcon,
+  PhotoIcon,
 } from '@heroicons/react/24/outline';
-import { ShareIcon } from '@heroicons/react/20/solid';
-import InformationCircleIcon from '../icons/InformationCircleIcon';
-import ExclamationTriangleIcon from '../icons/ExclamationTriangleIcon';
 import { FolderIcon } from '@heroicons/react/24/solid';
-import { coworkService } from '../../services/cowork';
-import SidebarToggleIcon from '../icons/SidebarToggleIcon';
-import ComposeIcon from '../icons/ComposeIcon';
-import LazyRenderTurn, { clearHeightCache } from './LazyRenderTurn';
-import PuzzleIcon from '../icons/PuzzleIcon';
-import EllipsisHorizontalIcon from '../icons/EllipsisHorizontalIcon';
-import PencilSquareIcon from '../icons/PencilSquareIcon';
-import TrashIcon from '../icons/TrashIcon';
-import WindowTitleBar from '../window/WindowTitleBar';
-import { getCompactFolderName } from '../../utils/path';
+import React, { useCallback, useEffect, useMemo,useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { useDispatch,useSelector } from 'react-redux';
+
 import { getScheduledReminderDisplayText } from '../../../scheduledTask/reminderText';
+import { coworkService } from '../../services/cowork';
+import { i18nService } from '../../services/i18n';
+import { RootState } from '../../store';
 import { setActiveSkillIds } from '../../store/slices/skillSlice';
-import DiffView, { extractDiffFromToolInput } from './DiffView';
+import type { CoworkImageAttachment,CoworkMessage, CoworkMessageMetadata } from '../../types/cowork';
+import type { Skill } from '../../types/skill';
+import { getCompactFolderName } from '../../utils/path';
 import Modal from '../common/Modal';
+import ComposeIcon from '../icons/ComposeIcon';
+import EllipsisHorizontalIcon from '../icons/EllipsisHorizontalIcon';
+import ExclamationTriangleIcon from '../icons/ExclamationTriangleIcon';
+import InformationCircleIcon from '../icons/InformationCircleIcon';
+import PencilSquareIcon from '../icons/PencilSquareIcon';
+import PuzzleIcon from '../icons/PuzzleIcon';
+import SidebarToggleIcon from '../icons/SidebarToggleIcon';
+import TrashIcon from '../icons/TrashIcon';
+import MarkdownContent from '../MarkdownContent';
+import WindowTitleBar from '../window/WindowTitleBar';
+import CoworkPromptInput, { type CoworkPromptInputRef } from './CoworkPromptInput';
+import DiffView, { extractDiffFromToolInput } from './DiffView';
+import LazyRenderTurn, { clearHeightCache } from './LazyRenderTurn';
 
 interface CoworkSessionDetailProps {
   onManageSkills?: () => void;
