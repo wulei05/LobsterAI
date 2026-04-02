@@ -1,0 +1,25 @@
+src/renderer/components/cowork/CoworkSessionDetail.tsx
+  872e93617d89db68 2621
+src/main/im/imCoworkHandler.ts
+  872e93617d89db68 247-250,252,259
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.5",
+  "base_commit_sha": "d7e74adcc8a4cffb3d6aab68d5a33cdc99d77579",
+  "prompts": {
+    "872e93617d89db68": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e80734fd-b29d-4ed4-b58d-fae49051b7b8",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 9,
+      "total_deletions": 4,
+      "accepted_lines": 7,
+      "overriden_lines": 0
+    }
+  }
+}
