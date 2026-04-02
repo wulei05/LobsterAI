@@ -1,0 +1,62 @@
+src/renderer/components/Settings.tsx
+  574e2fb30401b60a 3439-3452
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.3",
+  "base_commit_sha": "f67afcf3affb2f79f02aa5de5fcf4da5e1502df2",
+  "prompts": {
+    "2b8afb5ad54f8213": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "81d51c6c-4e48-4424-a042-4637570b0d14",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "wulei <wulei05@corp.netease.com>",
+      "messages": [],
+      "total_additions": 121,
+      "total_deletions": 13,
+      "accepted_lines": 98,
+      "overriden_lines": 0
+    },
+    "36222f03dbf2ae19": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ebd67c3b-7a81-4593-bf03-cfdbb53671b8",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "wulei <wulei05@corp.netease.com>",
+      "messages": [],
+      "total_additions": 561,
+      "total_deletions": 14,
+      "accepted_lines": 158,
+      "overriden_lines": 0
+    },
+    "574e2fb30401b60a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5cc98ee9-e64c-4d3b-b169-026be6ebb071",
+        "model": "<synthetic>"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 14,
+      "overriden_lines": 0
+    },
+    "8d888da9bf34b84f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "86bf0770-5cc4-4105-a08e-3d2c873e2d9c",
+        "model": "unknown"
+      },
+      "human_author": "wulei <wulei05@corp.netease.com>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    }
+  }
+}
