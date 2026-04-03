@@ -329,6 +329,10 @@ const CoworkPromptInput = React.forwardRef<CoworkPromptInputRef, CoworkPromptInp
       case 'Alt+Enter':
         isSendCombo = event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey;
         break;
+      default:
+        // Unknown config value — fall back to bare Enter so the user can always send
+        isSendCombo = !event.shiftKey && !event.ctrlKey && !event.metaKey && !event.altKey;
+        break;
     }
 
     if (isSendCombo && !isStreaming && !disabled) {
