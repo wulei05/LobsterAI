@@ -1,0 +1,27 @@
+src/renderer/components/cowork/CoworkPromptInput.tsx
+  549fbe4b17c450f9 1-2,18
+src/main/coworkStore.ts
+  549fbe4b17c450f9 1964-1966,1968
+src/renderer/utils/openclawModelRef.ts
+  549fbe4b17c450f9 25,27-28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.5",
+  "base_commit_sha": "b4c34b7d33653f55421284fe3ec2775150918b4e",
+  "prompts": {
+    "549fbe4b17c450f9": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d5177-e028-7bb2-b138-4d2f98b44113",
+        "model": "gpt-5.4"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 102,
+      "total_deletions": 32,
+      "accepted_lines": 11,
+      "overriden_lines": 0
+    }
+  }
+}
