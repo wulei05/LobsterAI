@@ -44,6 +44,10 @@ const AgentCreateModal: React.FC<AgentCreateModalProps> = ({ isOpen, onClose }) 
   const [imConfig, setImConfig] = useState<IMGatewayConfig | null>(null);
   const [boundPlatforms, setBoundPlatforms] = useState<Set<IMPlatform>>(new Set());
 
+  const isDirty = useCallback((): boolean => {
+    return !!(name || description || systemPrompt || identity || icon || skillIds.length > 0 || boundPlatforms.size > 0);
+  }, [name, description, systemPrompt, identity, icon, skillIds, boundPlatforms]);
+
   useEffect(() => {
     if (!isOpen) return;
     setName('');
@@ -72,10 +76,6 @@ const AgentCreateModal: React.FC<AgentCreateModalProps> = ({ isOpen, onClose }) 
     setActiveTab('basic');
     setBoundPlatforms(new Set());
   };
-
-  const isDirty = useCallback((): boolean => {
-    return !!(name || description || systemPrompt || identity || icon || skillIds.length > 0 || boundPlatforms.size > 0);
-  }, [name, description, systemPrompt, identity, icon, skillIds, boundPlatforms]);
 
   const handleClose = () => {
     if (isDirty()) {
