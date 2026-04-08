@@ -1,0 +1,60 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.5",
+  "base_commit_sha": "39ccb1e8367960149091570ffec375ad4c662852",
+  "prompts": {
+    "77678c6c4addb769": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d5255-f8b3-7453-9689-a9bd72bcbc20",
+        "model": "gpt-5.4"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 61,
+      "total_deletions": 42,
+      "accepted_lines": 0,
+      "overriden_lines": 0
+    },
+    "88a6a8c9b30c7584": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d5156-4ab2-7023-81fc-9c6b214b725a",
+        "model": "gpt-5.4"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 69,
+      "total_deletions": 0,
+      "accepted_lines": 0,
+      "overriden_lines": 0
+    },
+    "f03691f0d9469b20": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d5335-381f-7f32-874e-0208a773154a",
+        "model": "gpt-5.4"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 613,
+      "total_deletions": 20,
+      "accepted_lines": 0,
+      "overriden_lines": 0
+    },
+    "f5987331f8ef9d13": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d6afc-c1f5-71c2-93ab-ab48735202f2",
+        "model": "gpt-5.4"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 196,
+      "total_deletions": 0,
+      "accepted_lines": 196,
+      "overriden_lines": 0
+    }
+  }
+}
