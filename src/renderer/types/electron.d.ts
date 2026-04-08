@@ -59,6 +59,8 @@ interface CoworkConfig {
   memoryLlmJudgeEnabled: boolean;
   memoryGuardLevel: 'strict' | 'standard' | 'relaxed';
   memoryUserMemoriesMaxItems: number;
+  skipMissedJobs: boolean;
+  openClawSessionPolicy: OpenClawSessionPolicyConfig;
 }
 
 type CoworkConfigUpdate = Partial<Pick<
@@ -117,6 +119,10 @@ interface OpenClawEngineStatus {
   progressPercent?: number;
   message?: string;
   canRetry: boolean;
+}
+
+interface OpenClawSessionPolicyConfig {
+  keepAlive: '1d' | '7d' | '30d' | '365d';
 }
 
 interface AppUpdateDownloadProgress {
@@ -320,6 +326,10 @@ interface IElectronAPI {
       retryInstall: () => Promise<{ success: boolean; status?: OpenClawEngineStatus; error?: string }>;
       restartGateway: () => Promise<{ success: boolean; status?: OpenClawEngineStatus; error?: string }>;
       onProgress: (callback: (status: OpenClawEngineStatus) => void) => () => void;
+    };
+    sessionPolicy: {
+      get: () => Promise<{ success: boolean; config?: OpenClawSessionPolicyConfig; error?: string }>;
+      set: (config: OpenClawSessionPolicyConfig) => Promise<{ success: boolean; config?: OpenClawSessionPolicyConfig; error?: string }>;
     };
   };
   ipcRenderer: {
