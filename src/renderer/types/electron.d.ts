@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 interface ApiResponse {
   ok: boolean;
   status: number;
@@ -230,8 +231,9 @@ interface McpMarketplaceData {
   servers: McpMarketplaceServer[];
 }
 
-import type { Agent, PresetAgent } from './agent';
 import type { Platform } from '@shared/platform';
+
+import type { Agent, PresetAgent } from './agent';
 
 interface CreditItem {
   type: 'subscription' | 'boost' | 'free';
