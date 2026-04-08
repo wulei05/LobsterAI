@@ -1,0 +1,23 @@
+.github/workflows/labeler.yml
+  2595fa900bf712b9 4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.5",
+  "base_commit_sha": "9ddcc41ead818ef19011f73fa6bf7e9e46af6bbd",
+  "prompts": {
+    "2595fa900bf712b9": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d6d01-0547-73e1-820f-aab534788eff",
+        "model": "gpt-5.4"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 2,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    }
+  }
+}
