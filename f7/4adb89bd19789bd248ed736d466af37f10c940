@@ -1,0 +1,21 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.6",
+  "base_commit_sha": "f74adb89bd19789bd248ed736d466af37f10c940",
+  "prompts": {
+    "38d10a54847cf480": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d7233-2a41-7a91-867b-39e6d810abe4",
+        "model": "unknown"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 149,
+      "overriden_lines": 0
+    }
+  }
+}
