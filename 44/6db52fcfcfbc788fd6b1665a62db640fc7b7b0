@@ -1,0 +1,34 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.6",
+  "base_commit_sha": "446db52fcfcfbc788fd6b1665a62db640fc7b7b0",
+  "prompts": {
+    "38d10a54847cf480": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d7233-2a41-7a91-867b-39e6d810abe4",
+        "model": "unknown"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 149,
+      "overriden_lines": 0
+    },
+    "b6cebb96391da982": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d7232-c605-7a61-ac2d-2c4e7970c434",
+        "model": "gpt-5.4"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 34,
+      "overriden_lines": 0
+    }
+  }
+}
