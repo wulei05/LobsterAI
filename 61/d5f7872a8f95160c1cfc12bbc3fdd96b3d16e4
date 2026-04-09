@@ -1,0 +1,35 @@
+src/main/libs/openclawConfigSync.ts
+  469a8c43b6cc34e5 741
+src/main/openclawSessionPolicy/constants.ts
+  469a8c43b6cc34e5 18
+src/renderer/store/slices/coworkSlice.ts
+  469a8c43b6cc34e5 58
+src/renderer/components/Settings.tsx
+  469a8c43b6cc34e5 770,790,1416
+src/renderer/services/i18n.ts
+  469a8c43b6cc34e5 329-330,1645-1646
+src/renderer/services/cowork.ts
+  469a8c43b6cc34e5 227
+src/main/openclawSessionPolicy/store.test.ts
+  469a8c43b6cc34e5 73,80-83
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.6",
+  "base_commit_sha": "61d5f7872a8f95160c1cfc12bbc3fdd96b3d16e4",
+  "prompts": {
+    "469a8c43b6cc34e5": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d723f-2b87-7940-84e3-1d5cde4083bd",
+        "model": "gpt-5.4"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 94,
+      "total_deletions": 98,
+      "accepted_lines": 94,
+      "overriden_lines": 0
+    }
+  }
+}
