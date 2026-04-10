@@ -344,21 +344,6 @@ function createHistoryStore(messages: Array<Record<string, unknown>>) {
         }
       },
       updateSession: () => {},
-      replaceConversationMessages: (sessionId: string, authoritative: Array<{ role: string; text: string }>) => {
-        expect(sessionId).toBe(session.id);
-        session.messages = session.messages.filter(
-          (message) => message.type !== 'user' && message.type !== 'assistant',
-        );
-        for (const entry of authoritative) {
-          session.messages.push({
-            id: `msg-${nextId++}`,
-            type: entry.role,
-            content: entry.text,
-            metadata: { isStreaming: false, isFinal: true },
-            timestamp: nextId,
-          });
-        }
-      },
     },
   };
 }
