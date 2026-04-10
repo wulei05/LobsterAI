@@ -1,3 +1,4 @@
+import type { PermissionResult } from '@anthropic-ai/claude-agent-sdk';
 import { randomUUID } from 'crypto';
 import { app, BrowserWindow } from 'electron';
 import { EventEmitter } from 'events';
