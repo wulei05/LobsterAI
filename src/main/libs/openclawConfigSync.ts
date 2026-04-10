@@ -1402,17 +1402,6 @@ export class OpenClawConfigSync {
     }
 
     const configChanged = currentContent !== nextContent;
-    const previousBindings = (() => {
-      if (!currentContent.trim()) return null;
-      try {
-        const parsed = JSON.parse(currentContent) as { bindings?: unknown };
-        return JSON.stringify(parsed.bindings ?? []);
-      } catch {
-        return null;
-      }
-    })();
-    const nextBindings = JSON.stringify(managedConfig.bindings ?? []);
-    const requiresGatewayRestart = previousBindings !== null && previousBindings !== nextBindings;
 
     if (configChanged) {
       try {

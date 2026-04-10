@@ -3,10 +3,10 @@ import { EventEmitter } from 'events';
 import type {
   CoworkAgentEngine,
   CoworkContinueOptions,
-  PermissionResult,
   CoworkRuntime,
   CoworkRuntimeEvents,
   CoworkStartOptions,
+  PermissionResult,
 } from './types';
 import { ENGINE_SWITCHED_CODE } from './types';
 
