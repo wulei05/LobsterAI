@@ -1,0 +1,23 @@
+src/main/im/imScheduledTaskHandler.ts
+  dec0d6b70c67e234 4,6-8,10-15,52-57,206,209
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "7dd19a77fec15d9c521d1a354eadeb939f9a0e3a",
+  "prompts": {
+    "dec0d6b70c67e234": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d72cf-c104-7dd1-bb82-5802d4b7a7ae",
+        "model": "gpt-5.4"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 18,
+      "total_deletions": 27,
+      "accepted_lines": 18,
+      "overriden_lines": 0
+    }
+  }
+}
