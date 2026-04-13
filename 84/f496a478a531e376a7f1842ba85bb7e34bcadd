@@ -1,0 +1,27 @@
+src/main/preload.ts
+  dec0d6b70c67e234 1
+src/renderer/components/Settings.tsx
+  dec0d6b70c67e234 587,593,1042,1048-1050,1055-1056,1069,1643-1644,1736,1993,2216,2410,2430,3803
+src/renderer/types/electron.d.ts
+  dec0d6b70c67e234 1,650-660,672,674-676
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "84f496a478a531e376a7f1842ba85bb7e34bcadd",
+  "prompts": {
+    "dec0d6b70c67e234": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d72cf-c104-7dd1-bb82-5802d4b7a7ae",
+        "model": "gpt-5.4"
+      },
+      "human_author": "wulei",
+      "messages": [],
+      "total_additions": 34,
+      "total_deletions": 14,
+      "accepted_lines": 34,
+      "overriden_lines": 0
+    }
+  }
+}
